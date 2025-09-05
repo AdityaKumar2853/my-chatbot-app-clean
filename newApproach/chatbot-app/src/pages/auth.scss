@@ -1,0 +1,147 @@
+// @import '../styles/variables';
+
+// .auth-container {
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: $background-color;
+
+//   form {
+//     background: white;
+//     padding: 2rem;
+//     border-radius: 10px;
+//     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+//     width: 300px;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+
+//     h2 {
+//       color: $primary-color;
+//       margin-bottom: 1rem;
+//     }
+
+//     input {
+//       width: 100%;
+//       margin-bottom: 1rem;
+//       padding: 0.5rem;
+//       border: 1px solid #ccc;
+//       border-radius: 5px;
+//     }
+
+//     button {
+//       width: 100%;
+//       background-color: $primary-color;
+//       color: white;
+//       padding: 0.5rem;
+//       border: none;
+//       border-radius: 5px;
+//       cursor: pointer;
+
+//       &:hover {
+//         background-color: darken($primary-color, 10%);
+//       }
+//     }
+
+//     .auth-message {
+//       color: $secondary-color;
+//       margin-bottom: 1rem;
+//     }
+
+//     p {
+//       margin-top: 1rem;
+//       font-size: 0.9rem;
+
+//       a {
+//         color: $secondary-color;
+//         text-decoration: none;
+
+//         &:hover {
+//           text-decoration: underline;
+//         }
+//       }
+//     }
+//   }
+// }
+
+
+
+
+@import '../styles/variables';
+
+.auth-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-color;
+  margin: 0;
+  padding: 0;
+
+  form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      color: $primary-color;
+      margin-bottom: 1rem;
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      background-color: $primary-color;
+      color: white;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+
+    .auth-message {
+      color: $secondary-color;
+      margin-bottom: 1rem;
+      font-weight: 600;
+
+      &.success {
+        color: green;
+      }
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+
+      a {
+        color: $secondary-color;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

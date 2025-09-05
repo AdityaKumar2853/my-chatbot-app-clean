@@ -1,0 +1,28 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Database files
+*.db
+chatbot.db
+
+# Uploads folder
+uploads/
+
+# Logs
+*.log
+
+# MacOS files
+.DS_Store
+
+# Windows files
+Thumbs.db
+
+# Build outputs for frontend (React)
+build/
+dist/
+
+# Optional: VSCode settings
+.vscode/

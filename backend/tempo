@@ -1,0 +1,149 @@
+code is a **Node.js** backend application built using the **Express.js** framework. It serves as a chatbot system with file upload support, user authentication, CSV file parsing, and chart generation using Highcharts-like configuration.
+
+---
+
+### 🔧 **Modules Used**
+
+* `express`: Web framework to handle HTTP routes.
+* `cors`: Enables Cross-Origin Resource Sharing.
+* `multer`: Handles file uploads.
+* `path`, `fs`: File path resolution and file system operations.
+* `sqlite3`: Lightweight SQL database used to persist users and conversations.
+* `axios`: Makes HTTP requests (used to call the OpenAI API).
+* `csv-parser`: Parses CSV files.
+* `dotenv`: Loads environment variables from a `.env` file.
+
+---
+
+### 🌐 **Server Setup**
+
+```js
+const app = express();
+const PORT = process.env.PORT || 5000;
+```
+
+Starts an Express server on the specified port (default 5000).
+
+---
+
+### 🔐 **Environment Configuration**
+
+```js
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+```
+
+Reads your OpenAI API key from `.env`.
+
+---
+
+### 📂 **Middleware**
+
+* `cors()` and `express.json()` handle CORS and JSON payloads.
+* Static serving of uploaded files: `/uploads`.
+
+---
+
+### 📁 **Uploads Directory**
+
+If it doesn’t exist, the `uploads/` folder is created to store files.
+
+---
+
+### 📤 **File Upload with Multer**
+
+Configured to:
+
+* Save files to `uploads/` with unique names.
+* Restrict file types (e.g. images, CSVs, PDFs, Word/Excel files).
+* Limit size to 10MB.
+
+---
+
+### 🗄️ **SQLite Database Tables**
+
+Two tables:
+
+1. `users`: Stores `username` and `password`.
+2. `conversations`: Stores user messages, AI responses, file info, and optional chart data.
+
+---
+
+### 📊 **CSV Chart Parsing**
+
+If a CSV is uploaded:
+
+* Parsed with `csv-parser`.
+* Headers are detected.
+* Numeric and category columns are identified.
+* A **Highcharts-compatible config** is generated with a smart chart type (`column`, `line`).
+
+---
+
+### 📌 **Main Features**
+
+#### 🔐 Signup (`POST /signup`)
+
+Creates a new user.
+
+#### 🔐 Login (`POST /login`)
+
+Authenticates a user by checking their username and password.
+
+#### 💬 Chat with File Upload (`POST /chat`)
+
+* Accepts user message + optional file (CSV, image, etc.).
+* If CSV:
+
+  * Parses it.
+  * Generates a chart configuration.
+* Sends the message to **OpenAI's GPT-4o-mini**.
+* Stores conversation, file info, and chart data in the database.
+* Returns the AI reply, chart config, and file info.
+
+#### 📜 Get Conversations (`GET /conversations/:userId`)
+
+Returns a user's full chat history including file references and chart data.
+
+#### ❌ Delete a Conversation (`DELETE /conversations/:id`)
+
+Removes a chat by its ID.
+
+---
+
+### 📈 **Chart Generation Logic**
+
+* First 20 rows are used.
+* If there's one numeric column and many rows → `line` chart.
+* If >2 numeric columns → `line`.
+* Else → default to `column`.
+
+---
+
+### ❗ Error Handling
+
+* For file upload issues (Multer).
+* For API and DB errors (OpenAI or SQLite).
+
+---
+
+### ▶️ **Server Start**
+
+```js
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
+});
+```
+
+---
+
+### 🧠 Summary
+
+This app:
+
+* Allows users to sign up and log in.
+* Lets users chat with GPT-4o-mini.
+* Supports file uploads (CSV, images, docs).
+* Automatically generates data visualizations from CSVs.
+* Saves everything in a local SQLite database.
+
+Would you like a diagram of the flow or help modularizing this code?
